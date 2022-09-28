@@ -3,11 +3,17 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Interpretter {
+
+
+public class Interpreter {
     private String json = null;
 
-    public Interpretter(String url) throws Exception {
+    public Interpreter(String url) throws Exception {
         this.json = getHTML(url);
+    }
+
+    public String getJSON(){
+        return this.json;
     }
 
     public String getHTML(String urlToRead) throws Exception {
@@ -25,7 +31,15 @@ public class Interpretter {
     }
 
     public String getField(String field) {
+        String data = this.json;
+        data = data.substring(data.indexOf(field + "\":") + (field.length()+2));
+        data = data.substring(0, data.indexOf(","));
+        return(data);
+    }
+
+    private boolean testNested(String field){
         
-        return("Working");
+
+        return true;
     }
 }
